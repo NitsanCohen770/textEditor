@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import TextArea from './components/TextArea/TextArea';
+import PreviewCard from './components/PreviewCard/PreviewCard';
+import { useContext } from 'react';
+import textValueContext from './store/textValue-context';
 
 function App() {
+  const textValueCtx = useContext(textValueContext);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TextArea
+        rows={5}
+        title="Text Editor"
+        value={textValueCtx.enteredText}
+        onchange={textValueCtx.onchange}
+      />
+      <PreviewCard textValue={textValueCtx.tranformedText} />
     </div>
   );
 }
