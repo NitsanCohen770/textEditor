@@ -1,5 +1,5 @@
 import { useEnhancedReducer } from '../hooks/useEnhancedReducer';
-
+import ReactMarkdown from 'react-markdown';
 import TextValueContext from './textValue-context';
 
 const defaultTextValueState = {
@@ -8,25 +8,11 @@ const defaultTextValueState = {
 };
 
 const textValueReducer = (state, action) => {
-  let atrribute = action.letter;
-  let text = action.getState().enteredText;
-  //   let boldElement;
-  //   console.log(text);
-
-  //   boldElement = document.getElementById('h');
-  //   boldElement.innerHTML = atrribute;
-
-  switch (action.letter) {
-    case '#':
-      atrribute = <b id="h"></b>;
-
-      break;
-
-    default:
-      break;
-  }
   if (action.type === 'CHANGED') {
-    return { enteredText: action.letter, tranformedText: atrribute };
+    return {
+      enteredText: action.letter,
+      tranformedText: <ReactMarkdown children={action.letter} />,
+    };
   }
 };
 
